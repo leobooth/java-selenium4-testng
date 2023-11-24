@@ -1,2 +1,28 @@
-# Default ignored files
+# based on https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
+# References:
+# https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+# https://github.com/Ardesco/Selenium-Maven-Template/blob/master/.gitignore
+
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Maven
+target
+
+# IntelliJ
+*.iml
+*.ipr
 .idea
+.idea/*
+out

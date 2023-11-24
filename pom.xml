@@ -5,12 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.leobooth</groupId>
-    <artifactId>java-selenium4</artifactId>
+    <artifactId>java-selenium4-testng</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>Java Selenium4</name>
-    <!-- FIXME change it to the project's GitHub page -->
-    <url>http://www.example.com</url>
+    <name>Java Selenium4 TestNG</name>
+    <url>https://github.com/leobooth/java-selenium4-testng</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
