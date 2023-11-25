@@ -17,12 +17,13 @@
 *.sql
 *.sqlite
 
-# Maven
-target
-
 # IntelliJ
 *.iml
 *.ipr
 .idea
 .idea/*
 out
+
+# Maven
+target
+target/*
