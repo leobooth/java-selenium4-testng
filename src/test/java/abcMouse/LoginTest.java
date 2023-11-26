@@ -12,6 +12,8 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends ABCMouseBaseTest {
 
+    // TODO: parameterize test
+    // url, and email address is read from config file.
     @Test
     public void testLogin() {
         WebDriver driver = setupDriver();
@@ -55,6 +57,7 @@ public class LoginTest extends ABCMouseBaseTest {
         System.out.println("Page call-to-action: " + actualText);
         Assert.assertEquals(actualText, expectedText, "'Become A Member' call-to-action is not visible.");
 
+        // TODO: create test email generator
         prospectRegisterPage.enterEmailAddress("leoboothtx+20231125-2045@gmail.com");
         WaitUtils.hardWaitForSeconds(1);
         prospectRegisterPage.clickSubmitButton();
