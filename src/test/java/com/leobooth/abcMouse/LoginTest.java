@@ -15,7 +15,6 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends ABCMouseBaseTest {
 
-
     private String generateEmail(String emailAddress) {
         String username;
         String domainAndExtension;
@@ -52,8 +51,6 @@ public class LoginTest extends ABCMouseBaseTest {
         testLogin("https://www.abcmouse.com/", "true", "leoboothtx@gmail.com");
     }
 
-    // TODO: parameterize test
-    // url, and email address is read from config file.
     @Test
     @Parameters({"url", "generateEmail", "emailAddress"})
     public void testLogin(String url, String generateEmail, String emailAddress) {
@@ -84,6 +81,7 @@ public class LoginTest extends ABCMouseBaseTest {
         homePage.clickSignupButton();
 
         ProspectRegisterPage prospectRegisterPage = new ProspectRegisterPage(driver);
+
         // TODO: replace with wait for element(s) to load
         WaitUtils.hardWaitForSeconds(3);
         Assert.assertTrue(prospectRegisterPage.isBrowserOnPage(), "The browser did not navigate to the expected page:" + prospectRegisterPage.getPageName());
@@ -107,11 +105,13 @@ public class LoginTest extends ABCMouseBaseTest {
 
         prospectRegisterPage.enterEmailAddress(testEmailAddress);
         System.out.println("test email address: " + testEmailAddress);
-        // short wait to ensure email is entered before form is submitted
+
+        // short wait added to ensure email is entered before form is submitted
         WaitUtils.hardWaitForSeconds(1);
         prospectRegisterPage.clickSubmitButton();
 
         SubscriptionPage subscriptionPage = new SubscriptionPage(driver);
+
         // TODO: replace with wait for element(s) to load
         WaitUtils.hardWaitForSeconds(3);
         Assert.assertTrue(subscriptionPage.isBrowserOnPage(), "The browser did not navigate to the expected page:" + subscriptionPage.getPageName());
