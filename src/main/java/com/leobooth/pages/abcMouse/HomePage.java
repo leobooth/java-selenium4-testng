@@ -5,16 +5,19 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class HomePage {
+public class HomePage extends ABCMouseBasePage implements ABCMousePOInterface {
 
     private WebDriver driver;
+    private String pageUrl = "https://abcmouse.com";
+    private String pageName;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
+        this.pageName = "Home page";
     }
 
-    // HOME
-    By homeBodyBy = By.xpath("//html[@id='home-element']/body");
+    // PAGE LEVEL
+    By bodyBy = By.xpath("//html[@id='home-element']/body");
     By routeViewBy = By.xpath("route-view");
     By homeElementShadowRootBy = By.cssSelector("home-element");
     By mainLayoutBy = By.cssSelector("main-layout");
@@ -28,12 +31,15 @@ public class HomePage {
         By signupButtonBy = By.cssSelector("signup-button");
 
     public void navToPage() {
-        driver.navigate().to("https://abcmouse.com");
-        System.out.println("navigated to Home page");
+        super.navToPage(driver, pageUrl, pageName);
+    }
+
+    public String getPageTitle() {
+        return driver.getTitle();
     }
 
     private WebElement getHomeHeaderElement() {
-        WebElement body = driver.findElement(homeBodyBy);
+        WebElement body = driver.findElement(bodyBy);
         SearchContext routeViewShadowRoot = body.findElement(routeViewBy).getShadowRoot();
         SearchContext homeElementShadowRoot = routeViewShadowRoot.findElement(homeElementShadowRootBy).getShadowRoot();
         WebElement mainLayout = homeElementShadowRoot.findElement(mainLayoutBy);
@@ -50,7 +56,4 @@ public class HomePage {
         signupButton.click();
         System.out.println("clicked signup button");
     }
-
-//    private SearchContext getSignUpButtonSearchContext
-
 }
