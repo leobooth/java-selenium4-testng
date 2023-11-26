@@ -1,4 +1,4 @@
-package abcMouse;
+package com.leobooth.abcMouse;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +16,8 @@ public class ABCMouseBaseTest {
 
   @AfterTest
   public void tearDown() {
-    driver.quit();
+    if (driver != null) {
+      driver.quit();
+    }
   }
 }

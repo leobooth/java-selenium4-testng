@@ -1,6 +1,7 @@
-package sample;
+package com.leobooth.sample;
 
 import com.leobooth.WaitUtils;
+import com.leobooth.sample.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;

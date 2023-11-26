@@ -17,6 +17,12 @@ public class HomePage extends ABCMouseBasePage implements ABCMousePOInterface {
         this.pageName = "Home page";
     }
 
+    public HomePage(WebDriver driver, String url) {
+        this.driver = driver;
+        this.pageUrl = url;
+        this.pageName = "Home page";
+    }
+
     // PAGE LEVEL
     By bodyBy = By.xpath("//html[@id='home-element']/body");
     By routeViewBy = By.xpath("route-view");
