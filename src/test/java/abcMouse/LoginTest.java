@@ -4,6 +4,7 @@ import com.leobooth.WaitUtils;
 import com.leobooth.pages.abcMouse.CaptchaPage;
 import com.leobooth.pages.abcMouse.HomePage;
 import com.leobooth.pages.abcMouse.ProspectRegisterPage;
+import com.leobooth.pages.abcMouse.SubscriptionPage;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -15,6 +16,11 @@ public class LoginTest extends ABCMouseBaseTest {
     public void testLogin() {
         WebDriver driver = setupDriver();
         driver.manage().window().maximize();
+
+        String actualPageTitle = "";
+        String expectedPageTitle = "";
+        String expectedText = "";
+        String actualText = "";
 
         HomePage homePage = new HomePage(driver);
         homePage.navToPage();
@@ -30,28 +36,37 @@ public class LoginTest extends ABCMouseBaseTest {
         }
 
         // TODO: replace with wait for element(s) to load
-        WaitUtils.hardWaitForSeconds(2);
+        WaitUtils.hardWaitForSeconds(3);
+        Assert.assertTrue(homePage.isBrowserOnPage(), "The browser did not navigate to the expected page: " + homePage.getPageName());
         homePage.clickSignupButton();
 
         ProspectRegisterPage prospectRegisterPage = new ProspectRegisterPage(driver);
         // TODO: replace with wait for element(s) to load
         WaitUtils.hardWaitForSeconds(3);
-        Assert.assertTrue(prospectRegisterPage.isBrowserOnPage());
+        Assert.assertTrue(prospectRegisterPage.isBrowserOnPage(), "The browser did not navigate to the expected page:" + prospectRegisterPage.getPageName());
 
-        String actualPageTitle = prospectRegisterPage.getPageTitle();
-        String expectedPageTitle = "ABCmouse: Educational Games, Books, Puzzles & Songs for Kids & Toddlers";
+        actualPageTitle = prospectRegisterPage.getPageTitle();
+        expectedPageTitle = "ABCmouse: Educational Games, Books, Puzzles & Songs for Kids & Toddlers";
         System.out.println("Page title: " + actualPageTitle);
-        Assert.assertEquals(actualPageTitle, expectedPageTitle);
+        Assert.assertEquals(actualPageTitle, expectedPageTitle, "Prospect Register Page title is not visible.");
 
-        String expectedText = "Become a Member!";
-        String actualText = prospectRegisterPage.getBecomeAMemberText();
-        System.out.println("Is 'Become A Member' text visible? " + actualText);
-        Assert.assertEquals(actualText, expectedText);
+        expectedText = "Become a Member!";
+        actualText = prospectRegisterPage.getBecomeAMemberText();
+        System.out.println("Page call-to-action: " + actualText);
+        Assert.assertEquals(actualText, expectedText, "'Become A Member' call-to-action is not visible.");
 
-        // Enter Email address (any email address)
-        // Click “Submit” button
-        // Verify that ABCmouse.com page is returned.
+        prospectRegisterPage.enterEmailAddress("leoboothtx+20231125-2045@gmail.com");
+        WaitUtils.hardWaitForSeconds(1);
+        prospectRegisterPage.clickSubmitButton();
 
-        // Verify that on subscription page, “Become a Member!” text is rendered.
+        SubscriptionPage subscriptionPage = new SubscriptionPage(driver);
+        // TODO: replace with wait for element(s) to load
+        WaitUtils.hardWaitForSeconds(3);
+        Assert.assertTrue(subscriptionPage.isBrowserOnPage(), "The browser did not navigate to the expected page:" + subscriptionPage.getPageName());
+
+        expectedText = "Create Your Account";
+        actualText = subscriptionPage.getCallToActionText();
+        System.out.println("Page call-to-action: " + actualText);
+        Assert.assertEquals(actualText, expectedText, "'Create Your Account' call-to-action is not visible.");
     }
 }

@@ -7,9 +7,9 @@ import org.openqa.selenium.WebElement;
 
 public class ProspectRegisterPage extends ABCMouseBasePage implements ABCMousePOInterface {
 
-    WebDriver driver;
-    String pageUrl = null;
-    String pageName = null;
+    private WebDriver driver;
+    private String pageUrl = null;
+    private String pageName = null;
 
     public ProspectRegisterPage(WebDriver driver) {
         this.driver = driver;
@@ -32,6 +32,11 @@ public class ProspectRegisterPage extends ABCMouseBasePage implements ABCMousePO
 
     By emailEntryPanelBy = By.cssSelector("#reg-panels-wrapper");
 
+    // EMAIL INPUT
+    By inputEmailBy = By.cssSelector("input#email");
+
+    By submitButtonBy = By.cssSelector("#submit-button");
+
     public boolean isBrowserOnPage() {
         return driver.getCurrentUrl().contains(pageUrl);
     }
@@ -42,6 +47,10 @@ public class ProspectRegisterPage extends ABCMouseBasePage implements ABCMousePO
 
     public String getPageTitle() {
         return driver.getTitle();
+    }
+
+    public String getPageName() {
+        return this.pageName;
     }
 
     private WebElement getMainLayoutElement() {
@@ -64,11 +73,26 @@ public class ProspectRegisterPage extends ABCMouseBasePage implements ABCMousePO
         return becomeAMemberElement.getText();
     }
 
-    private WebElement getEmailEntryPanel() {
+    private WebElement getEmailEntryPanelElement() {
         WebElement pageContentElement = getPageContentElement();
         WebElement emailEntryPanelElement = pageContentElement.findElement(emailEntryPanelBy);
         return emailEntryPanelElement;
     }
 
+    private WebElement getInputEmailElement() {
+        WebElement emailEntryPanelElement = getEmailEntryPanelElement();
+        WebElement inputEmailElement = emailEntryPanelElement.findElement(inputEmailBy);
+        return inputEmailElement;
+    }
 
+    public void enterEmailAddress(String emailAddress) {
+        WebElement inputEmailElement = getInputEmailElement();
+        inputEmailElement.sendKeys(emailAddress);
+    }
+
+    public void clickSubmitButton() {
+        WebElement emailEntryPanelElement = getEmailEntryPanelElement();
+        WebElement submitButtonElement = emailEntryPanelElement.findElement(submitButtonBy);
+        submitButtonElement.click();
+    }
 }
