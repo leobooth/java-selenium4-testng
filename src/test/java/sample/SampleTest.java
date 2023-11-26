@@ -1,3 +1,5 @@
+package sample;
+
 import com.leobooth.WaitUtils;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
