@@ -4,6 +4,7 @@ import com.leobooth.WaitUtils;
 import com.leobooth.pages.abcMouse.CaptchaPage;
 import com.leobooth.pages.abcMouse.HomePage;
 import com.leobooth.pages.abcMouse.ProspectRegisterPage;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -16,12 +17,16 @@ public class LoginTest extends ABCMouseBaseTest {
         driver.manage().window().maximize();
 
         HomePage homePage = new HomePage(driver);
+        homePage.navToPage();
 
         // TODO: bypass "prove you are a human" check
-        homePage.navToPage();
-        CaptchaPage captchaPage = new CaptchaPage(driver);
-        if (captchaPage.isBrowserOnPage() && captchaPage.isVerifyHumanLabelVisible()) {
-            Assert.fail("test has been blocked by ABCMouse automation detection.");
+        try {
+            CaptchaPage captchaPage = new CaptchaPage(driver);
+            if (captchaPage.isBrowserOnPage() && captchaPage.isVerifyHumanLabelVisible()) {
+                Assert.fail("test has been blocked by ABCMouse automation detection.");
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println("automation detection did not block test; continue");
         }
 
         // TODO: replace with wait for element(s) to load
@@ -40,7 +45,7 @@ public class LoginTest extends ABCMouseBaseTest {
 
         String expectedText = "Become a Member!";
         String actualText = prospectRegisterPage.getBecomeAMemberText();
-        System.out.println("'Become A Member' text: " + actualText);
+        System.out.println("Is 'Become A Member' text visible? " + actualText);
         Assert.assertEquals(actualText, expectedText);
 
         // Enter Email address (any email address)

@@ -28,7 +28,9 @@ public class ProspectRegisterPage extends ABCMouseBasePage implements ABCMousePO
 
     By pageContentBy = By.cssSelector("#page-content");
 
-    By becomeAMemberBy = By.cssSelector(("#become-member"));
+    By becomeAMemberBy = By.cssSelector("#become-member");
+
+    By emailEntryPanelBy = By.cssSelector("#reg-panels-wrapper");
 
     public boolean isBrowserOnPage() {
         return driver.getCurrentUrl().contains(pageUrl);
@@ -61,4 +63,12 @@ public class ProspectRegisterPage extends ABCMouseBasePage implements ABCMousePO
         WebElement becomeAMemberElement = pageContentElement.findElement(becomeAMemberBy);
         return becomeAMemberElement.getText();
     }
+
+    private WebElement getEmailEntryPanel() {
+        WebElement pageContentElement = getPageContentElement();
+        WebElement emailEntryPanelElement = pageContentElement.findElement(emailEntryPanelBy);
+        return emailEntryPanelElement;
+    }
+
+
 }
