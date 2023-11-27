@@ -1,4 +1,4 @@
-package com.leobooth.pages;
+package com.leobooth.pages.sample;
 
 import org.openqa.selenium.WebDriver;
 
