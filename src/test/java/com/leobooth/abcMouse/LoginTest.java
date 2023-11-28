@@ -1,12 +1,11 @@
 package com.leobooth.abcMouse;
 
+import com.leobooth.EmailUtils;
 import com.leobooth.WaitUtils;
 import com.leobooth.pages.abcMouse.CaptchaPage;
 import com.leobooth.pages.abcMouse.HomePage;
 import com.leobooth.pages.abcMouse.ProspectRegisterPage;
 import com.leobooth.pages.abcMouse.SubscriptionPage;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -15,38 +14,6 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends ABCMouseBaseTest {
 
-    private String generateEmail(String emailAddress) {
-        String username;
-        String domainAndExtension;
-
-        username = emailAddress.substring(0,emailAddress.indexOf("@"));
-        domainAndExtension = emailAddress.substring(emailAddress.indexOf("@"));
-
-        LocalDateTime localDateTime = LocalDateTime.now();
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ISO_LOCAL_TIME;
-        String dateSection = dateFormatter.format(localDateTime);
-        String timeSection = timeFormatter.format(localDateTime);
-
-        // if there is a nanosecond time portion, remove it
-        if(timeSection.contains(".")) {
-            timeSection = timeSection.substring(0, timeSection.indexOf("."));
-        }
-
-        // remove unwanted characters from the timestamp
-        dateSection = dateSection.replace("-", "");
-        timeSection = timeSection.replace(":", "");
-        String timestamp = dateSection + "at" + timeSection;
-
-        return username + "+" + timestamp + domainAndExtension;
-    }
-
-    public void testGenerateEmail() {
-        String emailAddress = "leoboothtx@gmail.com";
-        String testEmail = generateEmail(emailAddress);
-        System.out.println("test email: " + testEmail);
-    }
-
     public void testLoginWithGeneratedEmail() {
         testLogin("https://www.abcmouse.com/", "true", "leoboothtx@gmail.com");
     }
@@ -54,7 +21,7 @@ public class LoginTest extends ABCMouseBaseTest {
     @Test
     @Parameters({"url", "generateEmail", "emailAddress"})
     public void testLogin(String url, String generateEmail, String emailAddress) {
-        WebDriver driver = setupDriver();
+        WebDriver driver = setupTestDriver();
         driver.manage().window().maximize();
 
         String actualPageTitle = "";
@@ -98,7 +65,7 @@ public class LoginTest extends ABCMouseBaseTest {
 
         String testEmailAddress = "";
         if (generateEmail.equalsIgnoreCase("true")) {
-            testEmailAddress = generateEmail(emailAddress);
+            testEmailAddress = EmailUtils.generateEmail(emailAddress);
         } else {
             testEmailAddress = emailAddress;
         }

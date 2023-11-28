@@ -2,15 +2,15 @@ package com.leobooth.pages.sample;
 
 import org.openqa.selenium.WebDriver;
 
-public class HomePage {
+public class HomePage extends PageObject {
 
-  private WebDriver driver;
+  final String pageUrl = "https://the-internet.herokuapp.com/";
+
+  final String pageName = "'The Internet' home page";
 
   public HomePage(WebDriver driver) {
-    this.driver = driver;
-  }
-
-  public String getUrl() {
-    return driver.getCurrentUrl();
+    super(driver);
+    setPageUrl(pageUrl);
+    setPageName(pageName);
   }
 }
