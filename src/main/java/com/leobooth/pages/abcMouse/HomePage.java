@@ -7,20 +7,19 @@ import org.openqa.selenium.WebElement;
 
 public class HomePage extends ABCMouseBasePage implements ABCMousePOInterface {
 
-    private WebDriver driver;
-    private String pageUrl;
-    private String pageName;
+    final String pageUrl = "https://www.abcmouse.com/";
+    final String pageName = "Home page";
 
     public HomePage(WebDriver driver) {
-        this.driver = driver;
-        this.pageUrl = "https://www.abcmouse.com/";
-        this.pageName = "Home page";
+        super(driver);
+        this.setPageUrl(pageUrl);
+        this.setPageName(pageName);
     }
 
     public HomePage(WebDriver driver, String url) {
-        this.driver = driver;
-        this.pageUrl = url;
-        this.pageName = "Home page";
+        super(driver);
+        this.setPageUrl(url);
+        this.setPageName(pageName);
     }
 
     // PAGE LEVEL
@@ -37,24 +36,8 @@ public class HomePage extends ABCMouseBasePage implements ABCMousePOInterface {
         By signupAuthstateContextBy = By.cssSelector("authstate-context:nth-of-type(3)");
         By signupButtonBy = By.cssSelector("signup-button");
 
-    public boolean isBrowserOnPage() {
-        return driver.getCurrentUrl().contains(pageUrl);
-    }
-
-    public void navToPage() {
-        super.navToPage(driver, pageUrl, pageName);
-    }
-
-    public String getPageTitle() {
-        return driver.getTitle();
-    }
-
-    public String getPageName() {
-        return this.pageName;
-    }
-
     private WebElement getHomeHeaderElement() {
-        WebElement body = driver.findElement(bodyBy);
+        WebElement body = getDriver().findElement(bodyBy);
         SearchContext routeViewShadowRoot = body.findElement(routeViewBy).getShadowRoot();
         SearchContext homeElementShadowRoot = routeViewShadowRoot.findElement(homeElementShadowRootBy).getShadowRoot();
         WebElement mainLayout = homeElementShadowRoot.findElement(mainLayoutBy);

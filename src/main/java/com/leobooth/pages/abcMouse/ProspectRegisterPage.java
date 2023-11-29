@@ -7,14 +7,13 @@ import org.openqa.selenium.WebElement;
 
 public class ProspectRegisterPage extends ABCMouseBasePage implements ABCMousePOInterface {
 
-    private WebDriver driver;
-    private String pageUrl = null;
-    private String pageName = null;
+    private String pageUrl = "https://www.abcmouse.com/abc/prospect-register/";
+    private String pageName = "Prospect Register page";
 
     public ProspectRegisterPage(WebDriver driver) {
-        this.driver = driver;
-        this.pageUrl = "https://www.abcmouse.com/abc/prospect-register/";
-        this.pageName = "Prospect Register page";
+        super(driver);
+        this.setPageUrl(pageUrl);
+        this.setPageName(pageName);
     }
 
     // PAGE LEVEL
@@ -37,24 +36,8 @@ public class ProspectRegisterPage extends ABCMouseBasePage implements ABCMousePO
 
     By submitButtonBy = By.cssSelector("#submit-button");
 
-    public boolean isBrowserOnPage() {
-        return driver.getCurrentUrl().contains(pageUrl);
-    }
-
-    public void navToPage() {
-        super.navToPage(driver, pageUrl, pageName);
-    }
-
-    public String getPageTitle() {
-        return driver.getTitle();
-    }
-
-    public String getPageName() {
-        return this.pageName;
-    }
-
     private WebElement getMainLayoutElement() {
-        WebElement body = driver.findElement(bodyBy);
+        WebElement body = getDriver().findElement(bodyBy);
         SearchContext routeViewShadowRoot = body.findElement(routeViewBy).getShadowRoot();
         SearchContext prospectRegisterPageShadowRoot = routeViewShadowRoot.findElement(prospectRegisterPageShadowRootBy).getShadowRoot();
         WebElement mainLayout = prospectRegisterPageShadowRoot.findElement(mainLayoutBy);

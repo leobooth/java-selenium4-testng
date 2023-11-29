@@ -7,14 +7,13 @@ import org.openqa.selenium.WebElement;
 
 public class SubscriptionPage extends ABCMouseBasePage implements ABCMousePOInterface {
 
-  private WebDriver driver;
-  private String pageUrl = null;
-  private String pageName = null;
+  private String pageUrl = "https://www.abcmouse.com/abc/subscription/";
+  private String pageName = "Subscription page";
 
   public SubscriptionPage(WebDriver driver) {
-    this.driver = driver;
-    this.pageUrl = "https://www.abcmouse.com/abc/subscription/";
-    this.pageName = "Subscription page";
+    super(driver);
+    this.setPageUrl(pageUrl);
+    this.setPageName(pageName);
   }
 
   // PAGE LEVEL
@@ -30,24 +29,8 @@ public class SubscriptionPage extends ABCMouseBasePage implements ABCMousePOInte
 
   By callToActionBy = By.cssSelector("form#subscription-form > h3");
 
-  public boolean isBrowserOnPage() {
-    return driver.getCurrentUrl().contains(pageUrl);
-  }
-
-  public void navToPage() {
-    super.navToPage(driver, pageUrl, pageName);
-  }
-
-  public String getPageTitle() {
-    return driver.getTitle();
-  }
-
-  public String getPageName() {
-    return this.pageName;
-  }
-
   private WebElement getMainLayoutElement() {
-    WebElement body = driver.findElement(bodyBy);
+    WebElement body = getDriver().findElement(bodyBy);
     SearchContext routeViewShadowRoot = body.findElement(routeViewBy).getShadowRoot();
     SearchContext subscriptionPageShadowRoot = routeViewShadowRoot.findElement(shadowRootBy).getShadowRoot();
     WebElement mainLayout = subscriptionPageShadowRoot.findElement(mainLayoutBy);

@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends ABCMouseBaseTest {
 
+    @Test(enabled = false)
     public void testLoginWithGeneratedEmail() {
         testLogin("https://www.abcmouse.com/", "true", "leoboothtx@gmail.com");
     }
@@ -29,6 +30,9 @@ public class LoginTest extends ABCMouseBaseTest {
         String expectedText = "";
         String actualText = "";
 
+        /*
+         * HOME PAGE
+         */
         HomePage homePage = new HomePage(driver, url);
         homePage.navToPage();
 
@@ -47,6 +51,9 @@ public class LoginTest extends ABCMouseBaseTest {
         Assert.assertTrue(homePage.isBrowserOnPage(), "The browser did not navigate to the expected page: " + homePage.getPageName());
         homePage.clickSignupButton();
 
+        /*
+         * PROSPECT REGISTER PAGE
+         */
         ProspectRegisterPage prospectRegisterPage = new ProspectRegisterPage(driver);
 
         // TODO: replace with wait for element(s) to load
@@ -77,6 +84,9 @@ public class LoginTest extends ABCMouseBaseTest {
         WaitUtils.hardWaitForSeconds(1);
         prospectRegisterPage.clickSubmitButton();
 
+        /*
+         * SUBSCRIPTION PAGE
+         */
         SubscriptionPage subscriptionPage = new SubscriptionPage(driver);
 
         // TODO: replace with wait for element(s) to load

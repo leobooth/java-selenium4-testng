@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 public class PageObject {
 
-  private WebDriver driver;
+  private WebDriver driver = null;
   private String pageUrl = null;
   private String pageName = null;
 
@@ -24,6 +24,10 @@ public class PageObject {
 
   protected void setPageName(String pageName) {
     this.pageName = pageName;
+  }
+
+  protected WebDriver getDriver() {
+    return this.driver;
   }
 
   public boolean isBrowserOnPage() {
