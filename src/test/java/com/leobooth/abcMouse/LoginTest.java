@@ -1,11 +1,11 @@
 package com.leobooth.abcMouse;
 
-import com.leobooth.EmailUtils;
-import com.leobooth.WaitUtils;
-import com.leobooth.pages.abcMouse.CaptchaPage;
-import com.leobooth.pages.abcMouse.HomePage;
-import com.leobooth.pages.abcMouse.ProspectRegisterPage;
-import com.leobooth.pages.abcMouse.SubscriptionPage;
+import com.leobooth.utils.EmailUtils;
+import com.leobooth.utils.WaitUtils;
+import com.leobooth.abcmouse.CaptchaPage;
+import com.leobooth.abcmouse.HomePage;
+import com.leobooth.abcmouse.ProspectRegisterPage;
+import com.leobooth.abcmouse.SubscriptionPage;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;

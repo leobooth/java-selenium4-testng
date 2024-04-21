@@ -1,9 +1,9 @@
-package com.leobooth.pages.sample.paraBank;
+package com.leobooth.parabank;
 
-import com.leobooth.pages.sample.PageObject;
+import com.leobooth.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 
-public class ParaBankHomePage extends PageObject {
+public class ParaBankHomePage extends BasePage {
 
   final String pageUrl = "https://parabank.parasoft.com/parabank/index.htm";
 

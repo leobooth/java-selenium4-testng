@@ -1,8 +1,8 @@
 package com.leobooth.sample;
 
-import com.leobooth.WaitUtils;
-import com.leobooth.pages.sample.paraBank.ParaBankHomePage;
-import com.leobooth.pages.sample.theInternet.TheInternetHomePage;
+import com.leobooth.utils.WaitUtils;
+import com.leobooth.parabank.ParaBankHomePage;
+import com.leobooth.theinternet.TheInternetHomePage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;

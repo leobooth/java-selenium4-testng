@@ -1,9 +1,9 @@
-package com.leobooth.pages.sample.theInternet;
+package com.leobooth.theinternet;
 
-import com.leobooth.pages.sample.PageObject;
+import com.leobooth.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 
-public class TheInternetHomePage extends PageObject {
+public class TheInternetHomePage extends BasePage {
 
   final String pageUrl = "https://the-internet.herokuapp.com/";
 

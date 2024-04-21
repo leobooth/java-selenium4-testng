@@ -1,6 +1,5 @@
 package com.leobooth.abcMouse;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.ArrayList;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,7 +10,6 @@ public class ABCMouseBaseTest {
   private ArrayList<WebDriver> testDrivers = new ArrayList<>();
 
   public WebDriver setupTestDriver() {
-    WebDriverManager.chromedriver().setup();
     WebDriver driver = new ChromeDriver();
     testDrivers.add(driver);
     return driver;

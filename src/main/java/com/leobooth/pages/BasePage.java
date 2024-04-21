@@ -1,18 +1,18 @@
-package com.leobooth.pages.abcMouse;
+package com.leobooth.pages;
 
 import org.openqa.selenium.WebDriver;
 
-public class ABCMouseBasePage {
+public class BasePage {
 
     private WebDriver driver;
     private String pageUrl = null;
     private String pageName = null;
 
-    public ABCMouseBasePage(WebDriver driver) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public ABCMouseBasePage (WebDriver driver, String pageUrl, String pageName) {
+    public BasePage(WebDriver driver, String pageUrl, String pageName) {
         this.driver = driver;
         this.pageUrl = pageUrl;
         this.pageName = pageName;

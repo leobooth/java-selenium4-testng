@@ -1,4 +1,4 @@
-package com.leobooth.pages.abcMouse;
+package com.leobooth.abcmouse;
 
 import org.openqa.selenium.WebDriver;
 
