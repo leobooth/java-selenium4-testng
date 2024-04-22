@@ -15,6 +15,11 @@ public class ClickshopUrl {
     private final String pageKey = "page";
     private final StringBuilder clickShopUrl;
 
+    // TODO: change this to use Apache URIBuilder
+    // https://stackoverflow.com/questions/19538431/is-there-a-right-way-to-build-a-url
+    // https://javadoc.io/doc/org.apache.httpcomponents/httpclient/latest/org/apache/http/client/utils/URIBuilder.html
+    // or use Java URI constructor (needs Java 20+)
+    // https://www.baeldung.com/java-url
     public ClickshopUrl(String zipCode) {
         clickShopUrl = new StringBuilder();
         clickShopUrl.append(urlBase);
