@@ -5,8 +5,8 @@ import org.openqa.selenium.WebDriver;
 
 public class VDP extends BasePage {
 
-    private String pageUrl = "";
-    private String pageName = "Vehicle Detail Page";
+    private final String pageUrl = "";
+    private final String pageName = "Vehicle Detail Page";
 
     public VDP (WebDriver driver) {
         super(driver);

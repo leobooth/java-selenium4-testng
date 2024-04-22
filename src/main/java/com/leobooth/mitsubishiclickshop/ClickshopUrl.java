@@ -1,17 +1,19 @@
 package com.leobooth.mitsubishiclickshop;
 
+import static com.leobooth.utils.UrlUtils.setUrlParameter;
+
 public class ClickshopUrl {
 
     // https://clickshop.mitsubishicars.com/cars?zip-code=18301&distance=100mi&make=Mitsubishi&condition=new&sortBy=Nearest+distance&page=1
 
-    private String urlBase = "https://clickshop.mitsubishicars.com/cars";
-    private String zipCodeKey = "zip-code";
-    private String distanceKey= "distance";
-    private String makeKey = "make";
-    private String conditionKey = "condition";
-    private String sortByKey = "sortBy";
-    private String pageKey = "page";
-    private StringBuilder url;
+    private final String urlBase = "https://clickshop.mitsubishicars.com/cars";
+    private final String zipCodeKey = "zip-code";
+    private final String distanceKey= "distance";
+    private final String makeKey = "make";
+    private final String conditionKey = "condition";
+    private final String sortByKey = "sortBy";
+    private final String pageKey = "page";
+    private final StringBuilder url;
 
     public ClickshopUrl(String zipCode) {
         this.url = new StringBuilder();
@@ -24,17 +26,7 @@ public class ClickshopUrl {
         this.url.append(setUrlParameter(false, pageKey,"1"));
     }
 
-    private String setUrlParameter(Boolean isFirstParameter, String key, String value) {
-        String querySymbol = "";
 
-        if(isFirstParameter) {
-            querySymbol = "?";
-        } else {
-            querySymbol = "&";
-        }
-
-        return querySymbol + key + "=" + value;
-    }
 
     public String getUrl() {
         return this.url.toString();
