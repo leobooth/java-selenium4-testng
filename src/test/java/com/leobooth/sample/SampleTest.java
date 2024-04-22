@@ -1,5 +1,6 @@
 package com.leobooth.sample;
 
+import com.leobooth.BaseTest;
 import com.leobooth.utils.WaitUtils;
 import com.leobooth.parabank.ParaBankHomePage;
 import com.leobooth.theinternet.TheInternetHomePage;

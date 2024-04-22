@@ -1,4 +1,4 @@
-package com.leobooth.abcMouse;
+package com.leobooth.abcmouse;
 
 import java.util.ArrayList;
 import org.openqa.selenium.WebDriver;

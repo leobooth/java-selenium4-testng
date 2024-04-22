@@ -7,7 +7,7 @@
     <parameter name="generateEmail" value="false"></parameter>
     <parameter name="emailAddress" value="leoboothtx@gmail.com"></parameter>
     <classes>
-      <class name="com.leobooth.abcMouse.LoginTest"/>
+      <class name="com.leobooth.abcmouse.LoginTest"/>
     </classes>
   </test>
   -->
@@ -16,7 +16,7 @@
     <parameter name="generateEmail" value="true"></parameter>
     <parameter name="emailAddress" value="leoboothtx@gmail.com"></parameter>
     <classes>
-      <class name="com.leobooth.abcMouse.LoginTest"/>
+      <class name="com.leobooth.abcmouse.LoginTest"/>
     </classes>
   </test>
 </suite>
