@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class SearchResultsPage extends BasePage {
 
     private final String pageUrl = "";
-    private final String pageName = "Vehicle Detail Page";
+    private final String pageName = "Search Results Page (SRP)";
 
     public SearchResultsPage(WebDriver driver) {
         super(driver);

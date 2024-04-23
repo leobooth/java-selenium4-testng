@@ -4,6 +4,7 @@ import static com.leobooth.utils.UrlUtils.*;
 
 public class ClickShopUrl {
 
+    // Production:
     // https://clickshop.mitsubishicars.com/cars?zip-code=18301&distance=100mi&make=Mitsubishi&condition=new&sortBy=Nearest+distance&page=1
 
     private final String urlBase = "https://clickshop.mitsubishicars.com/cars";

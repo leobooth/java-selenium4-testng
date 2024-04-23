@@ -27,7 +27,7 @@ public class ClickShopTest extends BaseTest {
         SearchResultsPage srp = new SearchResultsPage(driver, urlVDPByZipCode.getClickshopUrl());
         srp.navToPage();
 
-        WaitUtils.hardWaitForSeconds(10);
+        WaitUtils.hardWaitForSeconds(5);
 
         String clickShopHomePageTitleText = "Shop new Mitsubishi cars near you and pre-qualify | Mitsubishi powered by Drive";
         String actualPageTitle = srp.getPageTitle();
@@ -38,8 +38,9 @@ public class ClickShopTest extends BaseTest {
         WaitUtils.hardWaitForSeconds(3);
 
         String actualDealerName = srp.getSRPTileDealerName(1);
+        String actualDistanceAsString = srp.getSRPTileDistance(1);
         int actualDistance = Integer.parseInt(
-                actualDealerName.substring(0, srp.getSRPTileDistance(1).indexOf("mi")).trim()
+                actualDistanceAsString.substring(0, srp.getSRPTileDistance(1).indexOf("mi")).trim()
         );
 
         System.out.println(actualDealerName);
