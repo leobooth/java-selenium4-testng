@@ -2,7 +2,7 @@ package com.leobooth.mitsubishiclickshop;
 
 import static com.leobooth.utils.UrlUtils.*;
 
-public class ClickshopUrl {
+public class ClickShopUrl {
 
     // https://clickshop.mitsubishicars.com/cars?zip-code=18301&distance=100mi&make=Mitsubishi&condition=new&sortBy=Nearest+distance&page=1
 
@@ -20,10 +20,10 @@ public class ClickshopUrl {
     // https://javadoc.io/doc/org.apache.httpcomponents/httpclient/latest/org/apache/http/client/utils/URIBuilder.html
     // or use Java URI constructor (needs Java 20+)
     // https://www.baeldung.com/java-url
-    public ClickshopUrl(String zipCode) {
+    public ClickShopUrl(int zipCode) {
         clickShopUrl = new StringBuilder();
         clickShopUrl.append(urlBase);
-        clickShopUrl.append(buildNextUrlParameter(clickShopUrl, zipCodeKey, zipCode));
+        clickShopUrl.append(buildNextUrlParameter(clickShopUrl, zipCodeKey, Integer.toString(zipCode)));
         clickShopUrl.append(buildNextUrlParameter(clickShopUrl, distanceKey, "100mi"));
         clickShopUrl.append(buildNextUrlParameter(clickShopUrl, makeKey, "Mitsubishi"));
         clickShopUrl.append(buildNextUrlParameter(clickShopUrl, conditionKey, "new"));
