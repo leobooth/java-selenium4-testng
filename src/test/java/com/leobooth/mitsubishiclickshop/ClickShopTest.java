@@ -40,7 +40,7 @@ public class ClickShopTest extends BaseTest {
         String actualDealerName = srp.getSRPTileDealerName(1);
         String actualDistanceAsString = srp.getSRPTileDistance(1);
         int actualDistance = Integer.parseInt(
-                actualDistanceAsString.substring(0, srp.getSRPTileDistance(1).indexOf("mi")).trim()
+                actualDistanceAsString.substring(0, actualDistanceAsString.indexOf("mi")).trim()
         );
 
         System.out.println(actualDealerName);
