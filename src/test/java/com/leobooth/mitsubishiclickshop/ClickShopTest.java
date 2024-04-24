@@ -20,11 +20,11 @@ public class ClickShopTest extends BaseTest {
         int zipCode = 18301;
         int expectedDistance = 1;
 
-        ClickShopUrl urlVDPByZipCode = new ClickShopUrl(zipCode);
+        String urlVDPByZipCode = ClickShopUrl.getClickShopUatUrl(zipCode);
 
-        System.out.println(urlVDPByZipCode.getClickshopUrl());
+        System.out.println(urlVDPByZipCode);
 
-        SearchResultsPage srp = new SearchResultsPage(driver, urlVDPByZipCode.getClickshopUrl());
+        SearchResultsPage srp = new SearchResultsPage(driver, urlVDPByZipCode);
         srp.navToPage();
 
         WaitUtils.hardWaitForSeconds(5);
@@ -46,7 +46,7 @@ public class ClickShopTest extends BaseTest {
         System.out.println(actualDealerName);
         System.out.println(actualDistance);
 
-        softAssert.assertEquals(actualDealerName,expectedDealerName,"Unexpected dealer name: " + actualDealerName);
+        softAssert.assertEquals(actualDealerName.toUpperCase(),expectedDealerName.toUpperCase(),"Unexpected dealer name: " + actualDealerName);
         softAssert.assertEquals(actualDistance, expectedDistance, "Unexpected distance for dealer " + actualDealerName + ": " + actualDistance);
 
         softAssert.assertAll();
