@@ -17,7 +17,7 @@ public class ClickShopTest extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
 
         String expectedDealerName = "STROUDSBURG MITSUBISHI";
-        int zipCode = 18301;
+        String zipCode = "18301";
         int expectedDistance = 1;
 
         String urlVDPByZipCode = ClickShopUrl.getClickShopUatUrl(zipCode);
@@ -27,7 +27,7 @@ public class ClickShopTest extends BaseTest {
         SearchResultsPage srp = new SearchResultsPage(driver, urlVDPByZipCode);
         srp.navToPage();
 
-        WaitUtils.hardWaitForSeconds(5);
+        WaitUtils.hardWaitForSeconds(10);
 
         String clickShopHomePageTitleText = "Shop new Mitsubishi cars near you and pre-qualify | Mitsubishi powered by Drive";
         String actualPageTitle = srp.getPageTitle();
