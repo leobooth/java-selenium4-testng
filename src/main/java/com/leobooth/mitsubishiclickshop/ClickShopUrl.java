@@ -26,10 +26,10 @@ public class ClickShopUrl {
     // https://javadoc.io/doc/org.apache.httpcomponents/httpclient/latest/org/apache/http/client/utils/URIBuilder.html
     // or use Java URI constructor (needs Java 20+)
     // https://www.baeldung.com/java-url
-    public static String getClickShopProdUrl(int zipCode) {
+    public static String getClickShopProdUrl(String zipCode) {
         StringBuilder clickShopUrl = new StringBuilder();
         clickShopUrl.append(prodBaseUrl);
-        clickShopUrl.append(buildNextUrlParameter(clickShopUrl, zipCodeKey, Integer.toString(zipCode)));
+        clickShopUrl.append(buildNextUrlParameter(clickShopUrl, zipCodeKey, zipCode));
         clickShopUrl.append(buildNextUrlParameter(clickShopUrl, distanceKey, "100mi"));
         clickShopUrl.append(buildNextUrlParameter(clickShopUrl, makeKey, "Mitsubishi"));
         clickShopUrl.append(buildNextUrlParameter(clickShopUrl, conditionKey, "new"));
@@ -39,10 +39,10 @@ public class ClickShopUrl {
         return clickShopUrl.toString();
     }
 
-    public static String getClickShopUatUrl(int zipCode) {
+    public static String getClickShopUatUrl(String zipCode) {
         StringBuilder clickShopUrl = new StringBuilder();
         clickShopUrl.append(uatBaseUrl);
-        clickShopUrl.append(buildNextUrlParameter(clickShopUrl, zipCodeKey, Integer.toString(zipCode)));
+        clickShopUrl.append(buildNextUrlParameter(clickShopUrl, zipCodeKey, zipCode));
         clickShopUrl.append(buildNextUrlParameter(clickShopUrl, distanceKey, "100mi"));
         clickShopUrl.append(buildNextUrlParameter(clickShopUrl, makeKey, "Mitsubishi"));
         clickShopUrl.append(buildNextUrlParameter(clickShopUrl, conditionKey, "new"));
