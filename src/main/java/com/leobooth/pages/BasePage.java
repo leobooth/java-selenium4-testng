@@ -1,6 +1,11 @@
 package com.leobooth.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class BasePage {
 
@@ -36,7 +41,7 @@ public class BasePage {
 
     public void navToPage() {
         driver.navigate().to(pageUrl);
-        System.out.println("navigated to " + pageName);  }
+    }
 
     public String getPageUrl() {
         return driver.getCurrentUrl();
@@ -48,5 +53,10 @@ public class BasePage {
 
     public String getPageName() {
         return this.pageName;
+    }
+
+    public void waitUntilAllPageElementsVisible(int timeoutInSeconds) {
+        WebDriverWait waitForAllPageElements = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+        waitForAllPageElements.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.tagName("body")));
     }
 }
