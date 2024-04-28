@@ -2,10 +2,15 @@ package com.leobooth.mitsubishiclickshop.pages;
 
 import com.leobooth.pages.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class SearchResultsPage extends BasePage {
 
@@ -49,6 +54,34 @@ public class SearchResultsPage extends BasePage {
             "//descendant::div[contains(@class,'relative')]/following-sibling::span/descendant::div[contains(@class,'flex-col')][position()=2]/descendant::p[position()=3]"
     );
 
+    By srpNoVehiclesFound = By.xpath(
+            "//h4[contains(text(),'No vehicles found')]"
+    );
+
+    public void waitUntilSrpTitleVisible(int timeoutInSeconds) {
+        WebDriverWait waitForTitle = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds));
+        waitForTitle.until(ExpectedConditions.titleContains("Mitsubishi"));
+    }
+
+    public void waitUntilDealerNameVisible(int timeoutInSeconds) {
+        WebDriverWait waitForDealerName = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds));
+        waitForDealerName.until(
+                ExpectedConditions.or(
+                    ExpectedConditions.textToBePresentInElementLocated(srpTileDealerNameSelector, "Mitsubishi"),
+                    ExpectedConditions.textToBePresentInElementLocated(srpTileDealerNameSelector, "MITSUBISHI"),
+                    ExpectedConditions.visibilityOfElementLocated(srpTileDealerNameSelector)
+                )
+        );
+    }
+
+    public boolean isNoVehiclesFoundVisible() {
+        try {
+            WebElement noVehiclesFoundElement = getDriver().findElement(srpNoVehiclesFound);
+            return noVehiclesFoundElement.isDisplayed();
+        } catch (NoSuchElementException | TimeoutException e) {
+            return false;
+        }
+    }
 
     public String getSRPTileDealerName(int tileNumber) {
         ArrayList<WebElement> dealerNames = new ArrayList<>(getDriver().findElements(srpTileDealerNameSelector));
