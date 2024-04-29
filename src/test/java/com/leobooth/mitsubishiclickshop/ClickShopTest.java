@@ -3,6 +3,7 @@ package com.leobooth.mitsubishiclickshop;
 import com.leobooth.BaseTest;
 import com.leobooth.mitsubishiclickshop.pages.SearchResultsPage;
 import com.leobooth.utils.CSVToDealerZipList;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
@@ -29,7 +30,7 @@ public class ClickShopTest extends BaseTest {
         return searchResultsPage;
     }
 
-    private void assertDealerNameAndDistance(SearchResultsPage srp, SoftAssert softAssert, int tileNumber, CSVToDealerZipList.DealerZip expectedDealer, int expectedDistance) {
+    private void assertDealerNameAndDistance(SearchResultsPage srp, SoftAssert softAssert, int index, int tileNumber, CSVToDealerZipList.DealerZip expectedDealer, int expectedDistance) {
         String actualDealerName = "";
         String actualDistanceAsString = "";
         int actualDistance = -1;
@@ -42,24 +43,29 @@ public class ClickShopTest extends BaseTest {
                     actualDistanceAsString.substring(0, actualDistanceAsString.indexOf("mi")).trim()
             );
         } catch (TimeoutException e) {
-            System.out.println("Unable to find dealer name: " + expectedDealer.getDealership());
 
-            if (srp.isNoVehiclesFoundVisible()) {
-                System.out.println("no vehicles found.");
-                actualDealerName = "no vehicles found";
-                actualDistance = -1;
-            } else {
+            try {
+                if (srp.isNoVehiclesFoundVisible()) {
+                    System.out.println("No vehicles found for dealer: " + expectedDealer.getDealership());
+                } else {
+                    System.out.println("Unable to find dealer name: " + expectedDealer.getDealership());
+                }
+            } catch (NoSuchElementException nse) {
                 softAssert.assertAll();
             }
         }
 
-        System.out.println("expected dealer: " + expectedDealer.getDealership() + ", actual dealer: " + actualDealerName);
+        System.out.println("index: " + index + ", expected dealer: " + expectedDealer.getDealership() + ", actual dealer: " + actualDealerName);
 
         softAssert.assertEquals(
                 actualDealerName.toUpperCase(), expectedDealer.getDealership().toUpperCase(),
-                "Unexpected dealer name: " + actualDealerName + ", ZIP Code: " + expectedDealer.getZipCode());
-        softAssert.assertEquals(actualDistance, expectedDistance, "Unexpected distance from ZIP Code " +
-            expectedDealer.getZipCode() + " for dealer " + actualDealerName + ": " + actualDistance);
+                "Unexpected result: dealer name, ZIP Code " + expectedDealer.getZipCode() + ", dealer " + expectedDealer.getDealership() + ","
+        );
+
+        softAssert.assertEquals(
+                actualDistance, expectedDistance,
+                "Unexpected result: distance, ZIP Code " + expectedDealer.getZipCode() + ", dealer " + actualDealerName + ","
+        );
     }
 
     @Test
@@ -78,10 +84,13 @@ public class ClickShopTest extends BaseTest {
             Assert.fail("Unable to convert CSV to DealerZipList");
         }
 
+        // test seems to fail if you haven't navigated to the UAT site in your regular web browser first
+        // test failed at index 128; need to close, reopen browser after a certain number of dealers?
+
         //for (CSVToDealerZipList.DealerZip dealerZip : dealerZipList) {
         for (int index = 0; index < dealerZipList.size(); index++) {
             SearchResultsPage srp = navToSrp(driver, softAssert, dealerZipList.get(index));
-            assertDealerNameAndDistance(srp, softAssert, 1, dealerZipList.get(index), expectedDistance);
+            assertDealerNameAndDistance(srp, softAssert, index, 1, dealerZipList.get(index), expectedDistance);
         }
 
         softAssert.assertAll();
